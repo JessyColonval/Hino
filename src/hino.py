@@ -92,6 +92,18 @@ class Hino():
         """
         return self.__n_qtils
 
+    @property
+    def n_points(self) -> int:
+        """
+        The number of points in the dataset.
+
+        Return
+        ------
+        int
+            the number of points.
+        """
+        return self.__n_pts
+
     @staticmethod
     def limit_estimator(n_cls: int, n_attr: int) -> int:
         """
@@ -112,7 +124,19 @@ class Hino():
         ------
         int
             the integer value closest to the calculated optimum limit.
+
+        Raises
+        ------
+        ValueError
+            when the number of contextual attributes is strictly lower than 1
+            or when the number of behavioral values is strictly lower than 2.
         """
+        if n_attr < 1:
+            raise ValueError("The number of contextual attributes must be ",
+                             "greater than or equal to 1.")
+        if n_cls < 2:
+            raise ValueError("The number of behavioral values must be greater",
+                             " than or equal to 2.")
         return round((0.0205 * log2(-1.623730 + n_cls) + 0.062579) * n_attr)
 
     @staticmethod
