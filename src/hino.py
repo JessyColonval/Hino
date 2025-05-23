@@ -225,7 +225,7 @@ class Hino():
         ValueError
             When the given percentage is not in the interval ]0.0; 1.0[.
         """
-        if percent < 0.0 or percent > 1.0:
+        if percent <= 0.0 or percent >= 1.0:
             raise ValueError("The percentage of allowed outliers must be in ",
                              "the interval ]0.0; 1.0[.")
         self.__max_p_outliers = percent
