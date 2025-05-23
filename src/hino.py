@@ -230,7 +230,7 @@ class Hino():
                              "the interval ]0.0; 1.0[.")
         self.__max_p_outliers = percent
 
-    def __limit_review(self, isolation: List[int], min_p: float):
+    def __limit_review(self, isolation: List[int]):
         """
         Modify and re-evaluate the tolerance limit according to the isolation
         scores of each point, so that the maximum percentage of outlier allowed
@@ -243,23 +243,29 @@ class Hino():
         min_p: float
             Maximum percentage of outlier allowed.
         """
+        if self.__max_p_outliers is None:
+            raise ValueError("Impossible to adjust the tolerance limit when ",
+                             "there is no maximum percent of allowed outlier",
+                             " defined.")
+
+        # Count the occurrence of each isolation score.
         count = Counter(isolation)
-        count = dict(sorted(count.items(), reverse=True))
 
-        n_outliers = 0
-        p_pts = 0.0
-        i = -1
-        keys = list(count.keys())
-        while (p_pts < min_p) and (i < len(keys)):
-            i += 1
-            n_outliers += count[keys[i]]
-            p_pts = n_outliers / self.__n_pts
+        # Search the highest isolation score.
+        bound = max(isolation)
 
-        limit = keys[i]
-        if i == len(keys) - 1:
-            limit += 1
+        # Iterate the isolation scores in decreasing order until the percentage
+        # of points with at least that score is smaller than the maximum
+        # percentage of outlier allowed.
+        i = bound
+        n = 0
+        p = 0.0
+        while (0 <= i <= bound) and (p < self.__max_p_outliers):
+            n += count[i]
+            p = n / self.__n_pts
+            i -= 1
 
-        return limit
+        self.__limit = i + 1
 
     def __update_isolation(self, isolation: List[int],
                            absent_bhv: List[int | str], qtil: List[int]
@@ -383,8 +389,7 @@ class Hino():
             p_outliers = sum(result) / len(result)
             if p_outliers > self.__max_p_outliers:
                 del result
-                self.__limit = self.__limit_review(n_cdt_pts,
-                                                   self.__max_p_outliers)
+                self.__limit_review(n_cdt_pts)
                 result = self.__is_outliers(n_cdt_pts, self.__limit)
 
         return result
