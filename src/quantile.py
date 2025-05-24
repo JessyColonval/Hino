@@ -121,7 +121,7 @@ class Quantile():
                 # current threshold, from which a percentage of the difference
                 # between the two successive thresholds is added.
                 max_val = qiplus1
-                if upper_epsilon is not None:
+                if upper_epsilon is not None and i < len(qtils) - 2:
                     max_val += upper_epsilon * (qtils[i+2] - qiplus1)
 
                 # Includes points with a contextual value equal to the maximum
