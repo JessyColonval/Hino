@@ -74,7 +74,7 @@ class TestQuantile(TestCase):
         self.assertRaises(ValueError, Quantile.quantiles, self.__data, -1)
         self.assertRaises(ValueError, Quantile.quantiles, self.__data, -10)
 
-    def test_points_quantiles_all_points_are_presents(self):
+    def test_points_quantiles_all_points_presents(self):
         """
         Verifies that the 'points_per_quantiles' static function assigns all
         points to a quantile for each contextual attribute.
@@ -91,13 +91,101 @@ class TestQuantile(TestCase):
 
     def test_points_per_quantiles(self):
         """
-        Verifies that the 'points_per_quantiles' static function that correctly
+        Verifies that the 'points_per_quantiles' static function correctly
         splits all points in the dataset into the correct quantiles (i.e.
         according to their contextual values) for each contextual attribute.
         """
         actual = Quantile.points_per_quantiles(self.__data, self.__qtils)
         expected = self.__i_pts_qtils
         self.assertListEqual(expected, actual)
+
+    def test_points_per_quantiles_lower_epsilon(self):
+        """
+        Verifies that the 'ponits_per_quantiles' static function correctly
+        splits all points in the dataset into the correct quantiles plus add
+        points from the previous quantile when their contextual values are
+        close enough to the next threshold.
+        """
+        actual = Quantile.points_per_quantiles(self.__data, self.__qtils, 0.1,
+                                               None)
+        expected = [
+            [[1], [0, 4], [2, 3], [12], [12, 14], [10], [5, 11], [9, 13],
+             [6, 7, 8]],
+            [[0, 1, 2], [3, 4], [10], [12], [11, 14], [5], [],
+             [6, 7, 8, 9, 13]],
+            [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], [11, 14], [10, 12, 13, 14]],
+            [[2, 4], [0], [1, 3], [], [7, 8], [5, 9], [6],
+             [10, 11, 12, 13, 14]]
+        ]
+        self.assertListEqual(expected, actual)
+
+    def test_points_per_quantiles_upper_epsilon(self):
+        """
+        Verifies that the 'ponits_per_quantiles' static function correctly
+        splits all points in the dataset into the correct quantiles plus add
+        points from the next quantile when their contextual values are
+        close enough to the previous threshold.
+        """
+        actual = Quantile.points_per_quantiles(self.__data, self.__qtils, None,
+                                               0.1)
+        expected = [
+            [[0, 1, 4], [0, 2, 4], [2, 3], [12], [10, 14], [5, 10, 11],
+             [5, 11], [9, 13], [6, 7, 8]],
+            [[0, 1, 2, 4], [3, 4], [10], [12, 14], [11, 14], [5], [6, 7, 13],
+             [6, 7, 8, 9, 13]],
+            [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], [11, 14], [10, 12, 13]],
+            [[2, 4], [0, 3], [1, 3], [7, 8], [5, 7, 8], [5, 6, 9], [6],
+             [10, 11, 12, 13, 14]]
+        ]
+        self.assertListEqual(expected, actual)
+
+    def test_points_per_quantiles_both_epsilons(self):
+        """
+        Verifies that the 'ponits_per_quantiles' static function correctly
+        splits all points in the dataset into the correct quantiles plus add
+        points from the adjacents quantiles when their contextual values are
+        close enough to the corresponding thresholds.
+        """
+        actual = Quantile.points_per_quantiles(self.__data, self.__qtils, 0.1,
+                                               0.1)
+        expected = [
+            [[0, 1, 4], [0, 2, 4], [2, 3], [12], [10, 12, 14], [5, 10, 11],
+             [5, 11], [9, 13], [6, 7, 8]],
+            [[0, 1, 2, 4], [3, 4], [10], [12, 14], [11, 14], [5], [6, 7, 13],
+             [6, 7, 8, 9, 13]],
+            [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], [11, 14], [10, 12, 13, 14]],
+            [[2, 4], [0, 3], [1, 3], [7, 8], [5, 7, 8], [5, 6, 9], [6],
+             [10, 11, 12, 13, 14]]
+        ]
+        self.assertListEqual(expected, actual)
+
+    def test_points_per_quantiles_zero_epsilon_do_nothing(self):
+        """
+        Verifies that the 'ponits_per_quantiles' static function return the
+        same result when epsilons are equals to 0 and when there aren't not
+        defined.
+        """
+        actual = Quantile.points_per_quantiles(self.__data, self.__qtils, 0.0,
+                                               0.0)
+        expected = Quantile.points_per_quantiles(self.__data, self.__qtils)
+        self.assertListEqual(expected, actual)
+
+    def test_points_quantiles_w_epsilons_all_points_presents(self):
+        """
+        Verifies that the 'points_per_quantiles' static function assigns all
+        points to at least one quantile for each contextual attribute even
+        when epsilons are used.
+        """
+        actual = Quantile.points_per_quantiles(self.__data, self.__qtils, 0.1,
+                                               0.1)
+        expected = all(
+            all(
+                any(i in qtil for qtil in ctx_qtils)
+                for i in range(0, self.__n_pts)
+            )
+            for ctx_qtils in actual
+        )
+        self.assertTrue(expected)
 
     def test_quantiles_distribution(self):
         """
