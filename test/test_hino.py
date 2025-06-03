@@ -23,6 +23,25 @@ class TestHino(TestCase):
             }
         cls.__dataset = DataFrame(data)
 
+        # The separation of dataset points into 10 quantiles for each
+        # contextual attribute.
+        cls.__i_pts_qtils = [
+            [[1], [0, 4], [2, 3], [12], [14], [10], [5, 11], [9, 13],
+             [6, 7, 8]],
+            [[0, 1, 2], [3, 4], [10], [12], [11, 14], [5], [],
+             [6, 7, 8, 9, 13]],
+            [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], [11, 14], [10, 12, 13]],
+            [[2, 4], [0], [1, 3], [], [7, 8], [5, 9], [6],
+             [10, 11, 12, 13, 14]]
+        ]
+        cls.__bhv_distrib = [
+            [{0: 1}, {0: 2}, {0: 2}, {1: 1}, {1: 1}, {1: 1}, {2: 1, 1: 1},
+             {2: 1, 1: 1}, {2: 3}],
+            [{0: 3}, {0: 2}, {1: 1}, {1: 1}, {1: 2}, {2: 1}, {}, {2: 4, 1: 1}],
+            [{0: 5, 2: 5}, {1: 2}, {1: 3}],
+            [{0: 2}, {0: 1}, {0: 2}, {}, {2: 2}, {2: 2}, {2: 1}, {1: 5}]
+        ]
+
     def test_limit(self):
         """
         Verifies if the default tolerance limit is correct.
@@ -175,7 +194,19 @@ class TestHino(TestCase):
         the default number of quantile.
         """
         model = Hino(self.__dataset, ["a0", "a1", "a2", "a3"], "class")
-        actual = model._Hino__n_cdts_failed()
+        i_pts_qtils = [
+            [[0, 1, 2, 4], [3, 12, 14], [5, 6, 7, 8, 9, 10, 11, 13]],
+            [[0, 1, 2, 4], [3, 10, 12], [5, 6, 7, 8, 9, 11, 13, 14]],
+            [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]],
+            [[0, 2, 3, 4], [1, 7, 8], [5, 6, 9, 10, 11, 12, 13, 14]]
+        ]
+        bhv_distrib = [
+            [{0: 4}, {0: 1, 2: 2}, {1: 5, 2: 3}],
+            [{0: 4}, {0: 1, 2: 2}, {1: 5, 2: 3}],
+            [{0: 5, 1: 5, 2: 5}],
+            [{0: 4}, {0: 1, 1: 2}, {1: 3, 2: 5}]
+        ]
+        actual = model._Hino__n_cdts_failed(i_pts_qtils, bhv_distrib)
         expected = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         self.assertListEqual(expected, actual)
 
@@ -186,7 +217,8 @@ class TestHino(TestCase):
         """
         model = Hino(self.__dataset, ["a0", "a1", "a2", "a3"], "class")
         model.set_n_quantiles(10)
-        actual = model._Hino__n_cdts_failed()
+        actual = model._Hino__n_cdts_failed(self.__i_pts_qtils,
+                                            self.__bhv_distrib)
         expected = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0]
         self.assertListEqual(expected, actual)
 

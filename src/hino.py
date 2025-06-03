@@ -1,7 +1,7 @@
 """
 Written by Jessy Colonval.
 """
-from typing import List
+from typing import List, Dict
 from collections import Counter
 from pandas import DataFrame
 from numpy import log2
@@ -287,7 +287,9 @@ class Hino():
                 if self.__val_bhv[i] in absent_bhv:
                     isolation[i] += 1
 
-    def __n_cdts_failed(self) -> List[int]:
+    def __n_cdts_failed(self, i_pts_qtils: List[List[List[int]]],
+                        ctx_distrib: List[List[Dict[int | str, int]]]
+                        ) -> List[int]:
         """
         Private function that counts the number of times a point is isolated.
         As a reminder, a point is isolated when no point present in the two
@@ -295,18 +297,19 @@ class Hino():
         Unless all the points of this behavioral value are present in this
         quantile, in which case they cannot be isolated.
 
+        Parameters
+        ----------
+        i_pts_qtils: List[List[List[int]]]
+            Point indices separated into several quantiles for each contextual
+            attribute.
+        ctx_distrib: List[List[Dict[int | str, int]]]
+            The behavioral values present in each quantile.
+
         Return
         ------
         List[int]
             the number of times a point (at the same index) is isolated.
         """
-        # Splits the data set into several quantiles and count the number of
-        # occurrences of behavioral values in each of them.
-        ctx_qtils = Quantile.quantiles(self.__val_ctx, self.__n_qtils)
-        i_pts_qtils = Quantile.points_per_quantiles(self.__val_ctx, ctx_qtils)
-        ctx_distrib = Quantile.quantiles_distribution(self.__val_bhv,
-                                                      i_pts_qtils)
-
         # Initializes the list who stores the count of number of time a point
         # doesn't satisfy our condition, i.e. the number of contextual
         # attributes where a point is isolated.
@@ -375,9 +378,16 @@ class Hino():
             Indicates if the point (at this index) is an outliers (1) or not
             (0).
         """
+        # Splits the data set into several quantiles and count the number of
+        # occurrences of behavioral values in each of them.
+        ctx_qtils = Quantile.quantiles(self.__val_ctx, self.__n_qtils)
+        i_pts_qtils = Quantile.points_per_quantiles(self.__val_ctx, ctx_qtils)
+        ctx_distrib = Quantile.quantiles_distribution(self.__val_bhv,
+                                                      i_pts_qtils)
+
         # Computes the isolation score of each point and if they are an
         # outliers or not.
-        n_cdt_pts = self.__n_cdts_failed()
+        n_cdt_pts = self.__n_cdts_failed(i_pts_qtils, ctx_distrib)
         result = self.__is_outliers(n_cdt_pts, self.__limit)
 
         # If a maximum percentage of outliers was choosen and if the actual
