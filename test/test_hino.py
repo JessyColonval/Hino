@@ -8,6 +8,10 @@ from src.hino import Hino
 
 
 class TestHino(TestCase):
+    """
+    Unit tests that verify the proper functioning of all methods of the Hino
+    object.
+    """
 
     @classmethod
     def setUpClass(cls):
