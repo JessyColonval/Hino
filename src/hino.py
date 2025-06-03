@@ -63,7 +63,7 @@ class Hino():
         # Computes the tolerance limit and the number of quantiles.
         self.__limit = Hino.limit_estimator(n_cls, n_attr)
         self.__n_qtils = Hino.n_quantiles_estimator(self.__n_pts, n_cls)
-        self.__max_p_outliers = None
+        self.__max_p_outliers = 1.0
 
     @property
     def limit(self) -> int:
@@ -241,11 +241,6 @@ class Hino():
         isolation: List[int]
             Number of times a point (at the same index) is isolated.
         """
-        if self.__max_p_outliers is None:
-            raise ValueError("Impossible to adjust the tolerance limit when ",
-                             "there is no maximum percent of allowed outlier",
-                             " defined.")
-
         # Count the occurrence of each isolation score.
         count = Counter(isolation)
 
@@ -393,7 +388,7 @@ class Hino():
         # If a maximum percentage of outliers was choosen and if the actual
         # percentage is higher, then re-estimate the tolerance limit and
         # re-compute the outliers detection.
-        if self.__max_p_outliers is not None:
+        if self.__max_p_outliers != 1.0:
             p_outliers = sum(result) / len(result)
             if p_outliers > self.__max_p_outliers:
                 del result
