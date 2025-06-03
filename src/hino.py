@@ -240,8 +240,6 @@ class Hino():
         ----------
         isolation: List[int]
             Number of times a point (at the same index) is isolated.
-        min_p: float
-            Maximum percentage of outlier allowed.
         """
         if self.__max_p_outliers is None:
             raise ValueError("Impossible to adjust the tolerance limit when ",
