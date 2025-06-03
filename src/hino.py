@@ -288,7 +288,7 @@ class Hino():
                     isolation[i] += 1
 
     def __n_cdts_failed(self, i_pts_qtils: List[List[List[int]]],
-                        ctx_distrib: List[List[Dict[int | str, int]]]
+                        bhv_distrib: List[List[Dict[int | str, int]]]
                         ) -> List[int]:
         """
         Private function that counts the number of times a point is isolated.
@@ -302,7 +302,7 @@ class Hino():
         i_pts_qtils: List[List[List[int]]]
             Point indices separated into several quantiles for each contextual
             attribute.
-        ctx_distrib: List[List[Dict[int | str, int]]]
+        bhv_distrib: List[List[Dict[int | str, int]]]
             The behavioral values present in each quantile.
 
         Return
@@ -316,7 +316,7 @@ class Hino():
         isolation = [0 for i in range(0, len(self.__val_bhv))]
 
         for i_col, qtils in enumerate(i_pts_qtils):
-            distribution = ctx_distrib[i_col]
+            distribution = bhv_distrib[i_col]
 
             # The first quantile only checks for the presence of behavioral
             # values in its right quantile.
@@ -382,12 +382,12 @@ class Hino():
         # occurrences of behavioral values in each of them.
         ctx_qtils = Quantile.quantiles(self.__val_ctx, self.__n_qtils)
         i_pts_qtils = Quantile.points_per_quantiles(self.__val_ctx, ctx_qtils)
-        ctx_distrib = Quantile.quantiles_distribution(self.__val_bhv,
+        bhv_distrib = Quantile.quantiles_distribution(self.__val_bhv,
                                                       i_pts_qtils)
 
         # Computes the isolation score of each point and if they are an
         # outliers or not.
-        n_cdt_pts = self.__n_cdts_failed(i_pts_qtils, ctx_distrib)
+        n_cdt_pts = self.__n_cdts_failed(i_pts_qtils, bhv_distrib)
         result = self.__is_outliers(n_cdt_pts, self.__limit)
 
         # If a maximum percentage of outliers was choosen and if the actual
