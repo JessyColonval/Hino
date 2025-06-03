@@ -260,6 +260,48 @@ class TestHino(TestCase):
         isolation = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0]
         self.assertRaises(ValueError, model._Hino__limit_review, isolation)
 
+    def test_update_isolation(self):
+        """
+        Verifies that isolation scores change for the point in the quantile
+        where its behavioral values are missing.
+        """
+        model = Hino(self.__dataset, ["a0", "a1", "a2", "a3"], "class")
+        isolation = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0]
+        qtil = [0, 4]
+        absent_bhv = [0]
+        model._Hino__update_isolation(isolation, absent_bhv, qtil)
+        actual = model._Hino__is_outliers(isolation, 0)
+        expected = [1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0]
+        self.assertListEqual(expected, actual)
+
+    def test_update_isolation_no_absent_bhv(self):
+        """
+        Verifies that isolation scores do not change when no behavioral values
+        are missing.
+        """
+        model = Hino(self.__dataset, ["a0", "a1", "a2", "a3"], "class")
+        isolation = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0]
+        qtil = [0, 4]
+        absent_bhv = []
+        model._Hino__update_isolation(isolation, absent_bhv, qtil)
+        actual = model._Hino__is_outliers(isolation, 0)
+        expected = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0]
+        self.assertListEqual(expected, actual)
+
+    def test_update_isolation_other_absent_bhv(self):
+        """
+        Verifies that isolation scores do not change when the behavioral values
+        missing are not the value of the points in the quantile.
+        """
+        model = Hino(self.__dataset, ["a0", "a1", "a2", "a3"], "class")
+        isolation = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0]
+        qtil = [0, 4]
+        absent_bhv = [1, 2]
+        model._Hino__update_isolation(isolation, absent_bhv, qtil)
+        actual = model._Hino__is_outliers(isolation, 0)
+        expected = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0]
+        self.assertListEqual(expected, actual)
+
     def test_fit(self):
         """
         Verifies if the Hino's detection work correctly.
@@ -269,3 +311,31 @@ class TestHino(TestCase):
         actual = model.fit()
         expected = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0]
         self.assertListEqual(expected, actual)
+
+    def test_fit_too_much_outliers(self):
+        """
+        Verifies that the tolerance limit increases and that the outliers
+        detected are smaller when a percentage of allowed outliers is lower
+        than the outliers detected the first time.
+        """
+        model = Hino(self.__dataset, ["a0", "a1", "a2", "a3"], "class")
+        model.set_n_quantiles(10)
+        model.set_max_percent_outliers_detected(0.2)
+        actual = model.fit()
+        expected = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        self.assertListEqual(expected, actual)
+        self.assertEqual(1, model.limit)
+
+    def test_fit_enough_outliers(self):
+        """
+        Verifies that the tolerance limit and detected outliers do not change
+        when a percentage of allowed outliers is higher than the outliers
+        detected the first time.
+        """
+        model = Hino(self.__dataset, ["a0", "a1", "a2", "a3"], "class")
+        model.set_n_quantiles(10)
+        model.set_max_percent_outliers_detected(0.5)
+        actual = model.fit()
+        expected = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0]
+        self.assertListEqual(expected, actual)
+        self.assertEqual(0, model.limit)
