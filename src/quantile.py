@@ -1,7 +1,7 @@
 """
 Written by Jessy Colonval.
 """
-from typing import List, Dict, Any
+from typing import List, Dict
 from collections import Counter
 import numpy as np
 
@@ -149,16 +149,16 @@ class Quantile():
         return result
 
     @staticmethod
-    def quantiles_distribution(behaviors: List[Any],
+    def quantiles_distribution(behaviors: List[int | str],
                                qtils_pts: List[List[List[int]]]
-                               ) -> List[List[Dict[Any, int]]]:
+                               ) -> List[List[Dict[int | str, int]]]:
         """
         Gives the number of behavioral values present in each quantile of each
         contextual attribute.
 
         Parameters
         ----------
-        behaviors: List[Any]
+        behaviors: List[int | str]
             The list of behavioral values of the points in the dataset.
             The order must be respected, i.e. the nth behavioral value is
             associated with the nth point.
