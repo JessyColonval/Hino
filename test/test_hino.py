@@ -188,10 +188,10 @@ class TestHino(TestCase):
                               model.set_max_percent_outliers_detected,
                               p)
 
-    def test_isolation_score(self):
+    def test_isolation_score_no_isolation(self):
         """
-        Verifies if the computation of isolation scores works correctly with
-        the default number of quantile.
+        Verifies that no point is isolated when the behavioral values are
+        correctly distributed.
         """
         model = Hino(self.__dataset, ["a0", "a1", "a2", "a3"], "class")
         i_pts_qtils = [
@@ -205,6 +205,28 @@ class TestHino(TestCase):
             [{0: 4}, {0: 1, 2: 2}, {1: 5, 2: 3}],
             [{0: 5, 1: 5, 2: 5}],
             [{0: 4}, {0: 1, 1: 2}, {1: 3, 2: 5}]
+        ]
+        actual = model._Hino__n_cdts_failed(i_pts_qtils, bhv_distrib)
+        expected = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        self.assertListEqual(expected, actual)
+
+    def test_isolation_score_empty_first_last_qtils(self):
+        """
+        Verifies that the computation of the isolation scores is not influenced
+        by the presence of empty quantile at the beginning and end.
+        """
+        model = Hino(self.__dataset, ["a0", "a1", "a2", "a3"], "class")
+        i_pts_qtils = [
+            [[], [0, 1, 2, 4], [3, 12, 14], [5, 6, 7, 8, 9, 10, 11, 13], []],
+            [[], [0, 1, 2, 4], [3, 10, 12], [5, 6, 7, 8, 9, 11, 13, 14], []],
+            [[], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], []],
+            [[], [0, 2, 3, 4], [1, 7, 8], [5, 6, 9, 10, 11, 12, 13, 14], []]
+        ]
+        bhv_distrib = [
+            [{}, {0: 4}, {0: 1, 2: 2}, {1: 5, 2: 3}, {}],
+            [{}, {0: 4}, {0: 1, 2: 2}, {1: 5, 2: 3}, {}],
+            [{}, {0: 5, 1: 5, 2: 5}, {}],
+            [{}, {0: 4}, {0: 1, 1: 2}, {1: 3, 2: 5}, {}]
         ]
         actual = model._Hino__n_cdts_failed(i_pts_qtils, bhv_distrib)
         expected = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
