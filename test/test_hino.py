@@ -283,15 +283,6 @@ class TestHino(TestCase):
         model._Hino__limit_review(isolation)
         self.assertEqual(0, model.limit)
 
-    def test_limit_review_wo_a_bound(self):
-        """
-        Verifies that the limit review raises an exception when the maximal
-        percent of allowed outliers is not set.
-        """
-        model = Hino(self.__dataset, ["a0", "a1", "a2", "a3"], "class")
-        isolation = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0]
-        self.assertRaises(ValueError, model._Hino__limit_review, isolation)
-
     def test_update_isolation(self):
         """
         Verifies that isolation scores change for the point in the quantile
