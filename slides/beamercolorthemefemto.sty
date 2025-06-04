@@ -1,0 +1,42 @@
+% Couleurs de base issues de la nouvelle charte graphique (2021)
+
+
+\DeclareOption{green}{
+	\newcommand{\@femtomaincolor}{femtogreenstrong}
+	\newcommand{\@femtolightcolor}{femtogreenlight}
+}
+
+%% Currently not recommended
+%\DeclareOption{red}{
+	%\newcommand{\@femtomaincolor}{femtoredstrong}
+	%\newcommand{\@femtolightcolor}{femtoredlight}
+%}
+%\DeclareOption{purple}{
+	%\newcommand{\@femtomaincolor}{femtopurplestrong}
+	%\newcommand{\@femtolightcolor}{femtopurplelight}
+%}
+
+\ExecuteOptions{green}
+\ProcessOptions\relax
+
+\definecolor{femtogreenstrong}{RGB}{0, 152, 149}
+\definecolor{femtogreenlight}{RGB}{204, 238, 230}
+
+\definecolor{femtoredstrong}{RGB}{206, 93, 67}
+\definecolor{femtoredlight}{RGB}{253, 216, 203}
+
+\definecolor{femtoyellowstrong}{RGB}{244, 215, 63}
+\definecolor{femtoyellowlight}{RGB}{254, 246, 208}
+
+\definecolor{femtopurplestrong}{RGB}{99, 39, 126}
+\definecolor{femtopurplelight}{RGB}{218, 197, 230}
+
+\setbeamercolor{title page}{fg=white}
+\setbeamercolor{frametitle}{fg=black}
+\setbeamercolor{top separation line foot}{
+	use=\@femtomaincolor, bg=\@femtomaincolor
+}
+\setbeamercolor{structure}{fg=\@femtomaincolor}
+
+\setbeamercolor{block title alerted}{fg=femtoredstrong}
+\setbeamercolor{block title example}{fg=femtoyellowstrong}

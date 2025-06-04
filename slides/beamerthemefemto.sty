@@ -1,0 +1,150 @@
+\mode<presentation>
+
+\RequirePackage{tikz}
+\RequirePackage{xcolor}
+\RequirePackage{helvet}
+\usetikzlibrary{fit,positioning,calc,patterns.meta}
+
+
+\usecolortheme{femto}
+\usefonttheme{femto}
+
+\setbeamertemplate{title page}
+{
+	\begin{tikzpicture}[remember picture, overlay]
+		\node[fit=(current page),fill=\@femtomaincolor] {};
+		\node[anchor=north west,inner sep=3mm] at (current page.north west)
+			{\includegraphics[width=3cm]{img/Femto-logo_blanc-2012-transp.png}};
+		\node[anchor=south west,inner sep=3mm] (CNRS) at (current page.south
+			west)
+			{\includegraphics[height=1cm]{img/CNRS_logo_blanc_sur_alpha.pdf}};
+		\node[inner sep=0, right=0 of CNRS] (MLP)
+			{\includegraphics[height=1cm]{img/universite_marie_louis_pasteur.png}};
+		\node[inner sep=0, right=3mm of MLP] (ENSMM)
+			{\includegraphics[height=1cm]{img/ENSMM.png}};
+		\node[inner sep=0, right=3mm of ENSMM] (UTBM)
+			{\includegraphics[height=1cm]{img/UTBM.pdf}};
+
+		% orange arc 
+		\node[anchor=center, inner sep=0] at ($(current page.south west) + (0,
+			2.5cm)$) {
+				\begin{tikzpicture}
+					\path[fill=femtoredstrong, even odd rule] (0, 0) circle[radius=10pt]
+						(0, 0) circle[radius=20pt];
+				\end{tikzpicture}
+			};
+
+		% yellow arc 
+		\node[anchor=center, inner sep=0] at ($(current page.north east) + (0,
+			-3cm)$) {
+				\begin{tikzpicture}
+					\path[fill=femtoyellowstrong, even odd rule] (0, 0) circle[radius=10pt]
+						(0, 0) circle[radius=20pt];
+				\end{tikzpicture}
+			};
+		% white dot arc
+		\node[anchor=center, inner sep=0] at ($(current page.north west) + (6cm, 0)$) {
+				\begin{tikzpicture}
+					\path[pattern color=white, pattern={Dots[distance=2pt]}, even odd rule] (0, 0) circle[radius=10pt]
+						(0, 0) circle[radius=20pt];
+				\end{tikzpicture}
+			};
+
+		% white cross
+		\node[anchor=center, inner sep=0] at ($(current page.center) + (3cm,
+			-1.5cm)$) {
+				% white cross arc 
+				\begin{tikzpicture}
+					\path[fill=white] (0, 0) rectangle (30pt, 10pt);
+					\path[fill=white] (10pt, 20pt) rectangle (20pt, -10pt);
+				\end{tikzpicture}
+			};
+		
+		% purple angle
+		\node[anchor=center, inner sep=0] at ($(current page.north west) + (3.7cm,
+			-1.9cm)$) {
+				% white cross arc 
+				\begin{tikzpicture}
+					\path[fill=femtopurplestrong] (0, 0) rectangle (-20pt, 10pt);
+					\path[fill=femtopurplestrong] (0, 0) rectangle (-10pt, 20pt);
+				\end{tikzpicture}
+			};
+
+        % Titles
+        \node[align=left, text width=15cm, minimum height=1.3cm] at ($(current page.north west) + (8cm, -3.0cm)$) {\LARGE \textbf{\inserttitle}};
+        \node[align=left, text width=15cm, minimum height=1.3cm] at ($(current page.north west) + (8cm, -3.75cm)$) {\insertsubtitle};
+        \node[align=left, text width=15cm, minimum height=1.3cm] at ($(current page.north west) + (8cm, -4.25cm)$) {\scriptsize \insertshortdate};
+
+        % Separator
+        \draw[color=\@femtolightcolor] ($(current page.north west) + (0.2cm, -4.8cm)$) -- ($(current page.north west) + (1.5cm, -4.8cm)$);
+
+        % Authors
+        \node[align=left, text width=12cm] at ($(current page.north west) + (7.0cm, -5.5cm)$) {\small \insertauthor};
+        \node[align=left, text width=9cm] at ($(current page.north west) + (5.5cm, -6.3cm)$) {\scriptsize \insertinstitute};
+	\end{tikzpicture}
+}
+
+\setbeamertemplate{footline}
+{
+
+	\newcommand{\separationwidth}{\paperwidth}
+	\advance \separationwidth by -7mm
+	\hspace{4mm}
+	\begin{beamercolorbox}[wd=\separationwidth,ht=.5pt]{top separation line
+		foot}
+	\end{beamercolorbox}
+
+	\hbox{
+		\begin{beamercolorbox}[wd=.2\paperwidth,ht=8mm,sep=2mm]{background}
+			\includegraphics[height=5mm]{img/Femto-logo_gris-2012.png}
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.8\paperwidth,ht=8mm]{background}
+			\parbox[b][8mm][c]{.8\paperwidth}{
+				\usebeamerfont{footline}
+				\hfill \insertshorttitle $\ |$ \insertshortauthor $\ |$ \insertshortdate
+				\usebeamerfont{page number in head/foot}
+				\hspace{3mm}
+				\insertframenumber
+			}
+		\end{beamercolorbox}
+	}
+}
+
+% Removes navigation
+\setbeamertemplate{navigation symbols}
+{
+}
+
+\setbeamertemplate{background}
+{
+	% Bottom left angle
+	\begin{tikzpicture}[remember picture, overlay]
+		\node[anchor=south west] at ($(current page.south west) + (1mm, 9mm)$) {
+				\begin{tikzpicture}
+					\path[fill=\@femtomaincolor] (0, 0) -- (16pt, 0) -- (16pt,
+					8pt) -- (8pt, 8pt)--(8pt, 16pt) -- (0, 16pt);
+				\end{tikzpicture}
+			};
+	\end{tikzpicture}
+
+	% Mirrored F symbol
+	\begin{tikzpicture}[remember picture, overlay]
+		\node[anchor=north east, inner sep=0] at ($(current page.north east) + (-3mm, -3mm)$) {
+			\begin{tikzpicture}[]
+				\path[fill=\@femtolightcolor] (0, 0) -- (12pt, 0) -- (12pt,
+					20pt)
+					-- (24pt, 20pt) -- (24pt, 32pt) -- (12pt, 32pt) -- (12pt,
+					44pt)
+					--(12pt, 44pt) arc[start angle=0, end angle=90,
+					radius=28pt] (-16pt, 72pt)
+					-- (-16pt, 72pt) -- (-36pt, 72pt) -- (-36pt, 60pt) --
+					(-16pt, 60pt)
+					-- (-16pt, 60pt) arc[start angle=90, end angle=0,
+					radius=16pt]
+					-- (0pt, 44pt) -- (0pt, 32pt) -- (-12pt, 32pt) --
+					(-12pt, 20pt) -- (0pt, 20pt) -- (0pt, 0pt);
+				\path[fill=\@femtolightcolor] (12pt, 60pt) rectangle (24pt, 72pt);
+			\end{tikzpicture}
+			};
+	\end{tikzpicture}
+}
