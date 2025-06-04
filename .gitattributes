@@ -1,0 +1,5 @@
+*.md linguist-documentation
+*.csv linguist-documentation
+*.png linguist-documentation
+*.pdf linguist-documentation
+*.eps linguist-documentation
