@@ -23,3 +23,9 @@ Hino/
 ├── example.py                # Python script illustrating the use of the project
 └── requirements.txt          # Project dependencies
 ```
+
+## 📄 Licence
+
+This project is licensed under [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+You are free to use, modify and distribute this software, provided you comply with the terms of the license. 
+See the [LICENSE](./LICENSE) file for the full license text.
