@@ -1,3 +1,7 @@
+![Python](https://img.shields.io/badge/python-3.10+-blue)
+![License](https://img.shields.io/badge/license-Apache%202.0-green)
+![Tests](https://github.com/JessyColonval/Hino/actions/workflows/python-app.yml/badge.svg)
+
 # Hunting Inside N-Quantiles of Outliers (Hino)
 
 Source code of the Hino algorithm presented during 'The 29th Pacific-Asia Conference on Knowledge Discovery and Data Mining' conference in the Special Session 'DSFA: Learning on Complex Data'.
