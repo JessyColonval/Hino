@@ -27,6 +27,32 @@ Otherwise, points in the current quantile that do not meet the two conditions ha
 And when an isolation score of a point is too high, then this point is considered as an outlier.
 
 
+## 📊 Performance on real datasets
+
+The article compares Hino with other state-of-the-art methods on, amongst other things, real datasets to evaluate the quality of detected outliers.
+As the actual execution time is not discussed in the article, here's an example of how long Hino actually takes compared to IQR.
+These methods were run in the same environment with a common Ryzen 5 3600 processor.
+
+| Datasets              | Hino time      | IQR time     |
+| --------------------- | -------------- | ------------ |
+| annthyroid            | 1.423999s      | 0.020499s    |
+| breastW               | 0.013000s      | 0.006000s    |
+| cardio                | 0.253996s      | 0.018000s    |
+| glass                 | 0.006999s      | 0.005996s    |
+| ionosphere            | 0.115001s      | 0.027500s    |
+| isolet                | 134.194000s    | 5.198001s    |
+| letter recognition    | 0.593497s      | 0.024999s    |
+| mammography           | 7.925000s      | 0.007499s    |
+| multiple features     | 13.294499s     | 4.560000s    |
+| musk                  | 37.702000s     | 0.606000s    |
+| parkinson             | 16.671000s     | 7.220510s    |
+| pendigits             | 2.123502s      | 0.016999s    |
+| satimage2             | 2.093500s      | 0.035996s    |
+| shuttle               | 4.434003s      | 0.039500s    |
+| wine                  | 0.013002s      | 0.008498s    |
+| winequality           | 0.169997s      | 0.007998s    |
+
+
 ## 🗂️ Project tree structure
 
 ```bash
