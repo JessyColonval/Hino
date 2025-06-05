@@ -1,13 +1,14 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
-name: Hino
+name: Run Hino unit tests
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    paths:
+      - 'src/**/*.py'
+      - 'test/**/*.py'
+      - '.github/workflows/python-app.yml'
 
 permissions:
   contents: read
