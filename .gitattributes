@@ -3,3 +3,6 @@
 *.png linguist-documentation
 *.pdf linguist-documentation
 *.eps linguist-documentation
+*.dtx linguist-documentation
+*.ins linguist-documentation
+*.sty linguist-documentation
