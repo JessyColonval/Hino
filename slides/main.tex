@@ -83,17 +83,17 @@
 \begin{document}
 
 \begin{frame}[plain, c]
-    \titlepage
+	\titlepage
 \end{frame}
 
 \begin{frame}{What is an outlier?}
-    This is a point that is inconsistent with the rest of the dataset.
-    \vspace{0.25cm}
+	This is a point that is inconsistent with the rest of the dataset.
+	\vspace{0.25cm}
 
-    Inconsistence have two effects on ML:
-    \begin{itemize}
-        \item In learning phase: Weaken the predictive power.
-        \item In validation phase: Weaken the cross-validation score.
+	Inconsistence have two effects on ML:
+	\begin{itemize}
+		\item In learning phase: Weaken the predictive power.
+		\item In validation phase: Weaken the cross-validation score.
     \end{itemize}
     \vspace{0.25cm}
 
@@ -109,62 +109,62 @@
 \end{frame}
 
 \begin{frame}{How we define outliers}
-    \begin{minipage}[t]{0.64\linewidth}
-	\begin{figure}
-	    \centering
-	    \begin{tikzpicture}
-	        \draw[draw=black, visible on=<1->] (-4,0) rectangle ++(0.5,5);
-            \draw[draw=black, visible on=<1->] (-3,0) rectangle ++(0.5,5);
-            \draw[draw=black, visible on=<1->] (-2,0) rectangle ++(0.5,5);
-            \draw[draw=black, visible on=<1->] (-1,0) rectangle ++(0.5,5);
-            \draw[draw=black, visible on=<1->] (0,0) rectangle ++(0.5,5);
-            \draw[draw=black, visible on=<1->] (1,0) rectangle ++(0.5,5);
-            \draw[draw=black, visible on=<1->] (2,0) rectangle ++(0.5,5);
-            \draw[draw=black, visible on=<1->] (3,0) rectangle ++(0.5,5);
-            \draw[draw=black, visible on=<1->] (4,0) rectangle ++(0.5,5);
+	\begin{minipage}[t]{0.64\linewidth}
+		\begin{figure}
+	    	\centering
+	    	\begin{tikzpicture}
+      			\draw[draw=black, visible on=<1->] (-4,0) rectangle ++(0.5,5);
+				\draw[draw=black, visible on=<1->] (-3,0) rectangle ++(0.5,5);
+				\draw[draw=black, visible on=<1->] (-2,0) rectangle ++(0.5,5);
+				\draw[draw=black, visible on=<1->] (-1,0) rectangle ++(0.5,5);
+				\draw[draw=black, visible on=<1->] (0,0) rectangle ++(0.5,5);
+				\draw[draw=black, visible on=<1->] (1,0) rectangle ++(0.5,5);
+				\draw[draw=black, visible on=<1->] (2,0) rectangle ++(0.5,5);
+				\draw[draw=black, visible on=<1->] (3,0) rectangle ++(0.5,5);
+				\draw[draw=black, visible on=<1->] (4,0) rectangle ++(0.5,5);
 
-            % Points outliers
-            \node[visible on=<1->] at (-3.75,2.5) [circle, fill=NavyBlue, inner sep=1.5pt] {};
-            \node[draw, dashed, ultra thick, visible on=<2>] at (-3.75,2.5) [circle, black, inner sep=4.5pt] {};
+				% Points outliers
+				\node[visible on=<1->] at (-3.75,2.5) [circle, fill=NavyBlue, inner sep=1.5pt] {};
+				\node[draw, dashed, ultra thick, visible on=<2>] at (-3.75,2.5) [circle, black, inner sep=4.5pt] {};
 
-            % All class in one quantile.
-            \node[visible on=<1->] at (2.25,1.5) [circle, fill=BrickRed, inner sep=1.5pt] {};
-            \node[visible on=<1->] at (2.25,3.5) [circle, fill=ForestGreen, inner sep=1.5pt] {};
-            \node[visible on=<1->] at (2.25,3.0) [circle, fill=ForestGreen, inner sep=1.5pt] {};
-            \node[visible on=<1->] at (2.25,2.0) [circle, fill=ForestGreen, inner sep=1.5pt] {};
-            \node[visible on=<1->] at (2.25,2.5) [circle, fill=ForestGreen, inner sep=1.5pt] {};
-            \node[visible on=<1->] at (2.25,1.0) [circle, fill=BrickRed, inner sep=1.5pt] {};
-            \draw[dashed, ultra thick, visible on=<4>] (2.25,2.75) ellipse (0.5cm and 1cm);
+				% All class in one quantile.
+				\node[visible on=<1->] at (2.25,1.5) [circle, fill=BrickRed, inner sep=1.5pt] {};
+				\node[visible on=<1->] at (2.25,3.5) [circle, fill=ForestGreen, inner sep=1.5pt] {};
+				\node[visible on=<1->] at (2.25,3.0) [circle, fill=ForestGreen, inner sep=1.5pt] {};
+				\node[visible on=<1->] at (2.25,2.0) [circle, fill=ForestGreen, inner sep=1.5pt] {};
+				\node[visible on=<1->] at (2.25,2.5) [circle, fill=ForestGreen, inner sep=1.5pt] {};
+				\node[visible on=<1->] at (2.25,1.0) [circle, fill=BrickRed, inner sep=1.5pt] {};
+				\draw[dashed, ultra thick, visible on=<4>] (2.25,2.75) ellipse (0.5cm and 1cm);
 
-            % Q2
-            \node[visible on=<1->] at (-1.75, 2.5) [circle, fill=NavyBlue, inner sep=1.5pt] {};
+				% Q2
+				\node[visible on=<1->] at (-1.75, 2.5) [circle, fill=NavyBlue, inner sep=1.5pt] {};
 
-            % Q3
-            \node[visible on=<1->] at (-0.75, 2.5) [circle, fill=NavyBlue, inner sep=1.5pt] {};
-            \node[visible on=<1->] at (-0.75, 2.0) [circle, fill=NavyBlue, inner sep=1.5pt] {};
+				% Q3
+				\node[visible on=<1->] at (-0.75, 2.5) [circle, fill=NavyBlue, inner sep=1.5pt] {};
+				\node[visible on=<1->] at (-0.75, 2.0) [circle, fill=NavyBlue, inner sep=1.5pt] {};
 
-            % Q4.
-            \node[visible on=<1->] at (0.25, 2.5) [circle, fill=BrickRed, inner sep=1.5pt] {};
-            \node[visible on=<1->] at (0.25, 3) [circle, fill=NavyBlue, inner sep=1.5pt] {};
-            \node[visible on=<1->] at (0.25, 2.0) [circle, fill=NavyBlue, inner sep=1.5pt] {};
-            \node[draw, dashed, ultra thick, visible on=<3>] at (0.25, 2.5) [circle, black, inner sep=4.5pt] {};
+				% Q4.
+				\node[visible on=<1->] at (0.25, 2.5) [circle, fill=BrickRed, inner sep=1.5pt] {};
+				\node[visible on=<1->] at (0.25, 3) [circle, fill=NavyBlue, inner sep=1.5pt] {};
+				\node[visible on=<1->] at (0.25, 2.0) [circle, fill=NavyBlue, inner sep=1.5pt] {};
+				\node[draw, dashed, ultra thick, visible on=<3>] at (0.25, 2.5) [circle, black, inner sep=4.5pt] {};
 
-            % Q5.
-            \node[visible on=<1->] at (1.25, 2.5) [circle, fill=NavyBlue, inner sep=1.5pt] {};
-            \node[visible on=<1->] at (1.25, 2) [circle, fill=NavyBlue, inner sep=1.5pt] {};
-            \node[visible on=<1->] at (1.25, 3) [circle, fill=NavyBlue, inner sep=1.5pt] {};
-            \node[visible on=<1->] at (1.25, 3.5) [circle, fill=NavyBlue, inner sep=1.5pt] {};
+				% Q5.
+				\node[visible on=<1->] at (1.25, 2.5) [circle, fill=NavyBlue, inner sep=1.5pt] {};
+				\node[visible on=<1->] at (1.25, 2) [circle, fill=NavyBlue, inner sep=1.5pt] {};
+				\node[visible on=<1->] at (1.25, 3) [circle, fill=NavyBlue, inner sep=1.5pt] {};
+				\node[visible on=<1->] at (1.25, 3.5) [circle, fill=NavyBlue, inner sep=1.5pt] {};
 
-            % Q6
-            \node[visible on=<1->] at (3.25, 3) [circle, fill=BrickRed, inner sep=1.5pt] {};
-            \node[visible on=<1->] at (3.25, 2.5) [circle, fill=BrickRed, inner sep=1.5pt] {};
-            \node[visible on=<1->] at (3.25, 2) [circle, fill=BrickRed, inner sep=1.5pt] {};
+				% Q6
+				\node[visible on=<1->] at (3.25, 3) [circle, fill=BrickRed, inner sep=1.5pt] {};
+				\node[visible on=<1->] at (3.25, 2.5) [circle, fill=BrickRed, inner sep=1.5pt] {};
+				\node[visible on=<1->] at (3.25, 2) [circle, fill=BrickRed, inner sep=1.5pt] {};
 
-            % Q7
-            \node[visible on=<1->] at (4.25, 2.5) [circle, fill=BrickRed, inner sep=1.5pt] {};
-            \node[visible on=<1->] at (4.25, 3.0) [circle, fill=BrickRed, inner sep=1.5pt] {};
-	    \end{tikzpicture}
-	\end{figure}
+				% Q7
+				\node[visible on=<1->] at (4.25, 2.5) [circle, fill=BrickRed, inner sep=1.5pt] {};
+				\node[visible on=<1->] at (4.25, 3.0) [circle, fill=BrickRed, inner sep=1.5pt] {};
+			\end{tikzpicture}
+		\end{figure}
 	\end{minipage}
 	\hfill
 	\begin{minipage}[t]{0.35\linewidth}
@@ -191,7 +191,7 @@
 \end{frame}
 
 \begin{frame}{Hino's algorithm}
-    Is an extension of the \textbf{IQR} method.
+	Is an extension of the \textbf{IQR} method.
     \vspace{0.25cm}
 
     \textbf{Isolation tolerance:}
