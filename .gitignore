@@ -175,4 +175,8 @@ cython_debug/
 
 #
 # LaTeX 
-slides/*.aux slides/*.nav slides/*.out slides/*.snm slides/*.toc
+slides/*.aux
+slides/*.nav
+slides/*.out
+slides/*.snm
+slides/*.toc
