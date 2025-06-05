@@ -4,9 +4,11 @@ on:
   push:
     paths:
       - '**.tex'
+      - '.github/workflows/latex.yml'
   pull_request:
     paths:
       - '**.tex'
+      - '.github/workflows/latex.yml'
 
 jobs:
   build:
@@ -19,13 +21,13 @@ jobs:
     - name: Install LaTeX
       run: |
         sudo apt-get update
-        sudo apt-get install -y texlive-full
+        sudo apt-get install -y texlive-latex-recommended texlive-latex-extra
 
     - name: Compile LaTeX document
       run: |
-        pdflatex -interaction=nonstopmode -halt-on-error --shell-escape main.tex
-        pdflatex -interaction=nonstopmode -halt-on-error --shell-escape main.tex
-        pdflatex -interaction=nonstopmode -halt-on-error --shell-escape main.tex
+        pdflatex -interaction=nonstopmode -halt-on-error --shell-escape /slides/main.tex
+        pdflatex -interaction=nonstopmode -halt-on-error --shell-escape /slides/main.tex
+        pdflatex -interaction=nonstopmode -halt-on-error --shell-escape /slides/main.tex
 
     - name: Upload PDF as artifact
       uses: actions/upload-artifact@v4
