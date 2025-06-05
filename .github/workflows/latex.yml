@@ -3,10 +3,10 @@ name: Build LaTeX PDF
 on:
   push:
     paths:
-      - '/slides/**.tex'
+      - '**.tex'
   pull_request:
     paths:
-      - '/slides/**.tex'
+      - '**.tex'
 
 jobs:
   build:
