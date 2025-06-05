@@ -1,6 +1,7 @@
 ![Python](https://img.shields.io/badge/python-3.10+-blue)
 ![License](https://img.shields.io/badge/license-Apache%202.0-green)
 ![Tests](https://github.com/JessyColonval/Hino/actions/workflows/python-app.yml/badge.svg)
+![Build PDF](https://github.com/JessyColonval/Hino/actions/workflows/latex.yml/badge.svg)
 
 # Hunting Inside N-Quantiles of Outliers (Hino)
 
