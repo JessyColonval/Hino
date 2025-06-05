@@ -24,7 +24,7 @@ Concretely, for each quantile, Hino observes the direct adjacent quantiles to en
 - at least one of these two quantiles contains at least one point of the same class as the ones in the current quantile.
 
 Otherwise, points in the current quantile that do not meet the two conditions have their isolation scores incremented by 1.
-And when an isolation score of a point is too high, then this point is considered an as outlier.
+And when an isolation score of a point is too high, then this point is considered as an outlier.
 
 
 ## 🗂️ Project tree structure
