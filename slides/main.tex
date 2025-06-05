@@ -65,7 +65,7 @@
 % Gaussian function useful for IQR figure
 \usepgfplotslibrary{fillbetween}
 \pgfmathdeclarefunction{gauss}{3}{%
-  \pgfmathparse{1/(#3*sqrt(2*pi))*exp(-((#1-#2)^2)/(2*#3^2))}%
+	\pgfmathparse{1/(#3*sqrt(2*pi))*exp(-((#1-#2)^2)/(2*#3^2))}%
 }
 
 
@@ -232,7 +232,7 @@
 		\begin{itemize}
 		\item Large amount of sample.
 		\item Outliers are known.
-		\item Bias i.r. of real world.
+		\item Bias i.r.\ of real world.
 		\end{itemize}
 	\end{itemize}
 	\end{minipage}
@@ -241,7 +241,7 @@
 	\begin{itemize}
 		\item \textcolor{ForestGreen}{$\mathbf{16}$} real datasets:
 		\begin{itemize}
-		\item Representative i.r. characteristics.
+		\item Representative i.r.\ characteristics.
 		\item Outliers are unknown.
 		\item Real usage.
 		\end{itemize}
@@ -460,27 +460,27 @@
 	& \textcolor{BlueViolet}{$4.70\%$} | \cmark & & \textcolor{BlueViolet}{$51.91\%$} | \xmark & & \textcolor{BlueViolet}{$2.98\%$} | \cmark & & \textcolor{BlueViolet}{$1.56\%$} | \cmark & & \textcolor{Purple}{$2$} | \textcolor{BlueViolet}{$16.70\%$} | \cmark & & \textcolor{Purple}{$9$} | \textcolor{BlueViolet}{$0.01\%$} | \cmark & \\
 	\CodeAfter
 		\begin{tikzpicture}
-		% horizontal
-		\draw (1-|2) -- (1-|last);
-		\draw (2-|1) -- (2-|last);
-		\draw (4-|1) -- (4-|last);
-		\draw (7-|1) -- (7-|last);
-		\draw (10-|1) -- (10-|last);
-		% vertical
-		\draw (2-|1) -- (last-|1);
-		\draw (1-|2) -- (last-|2);
-		\draw (2-|3) -- (last-|3);
-		\draw (1-|4) -- (last-|4);
-		\draw (2-|5) -- (last-|5);
-		\draw (1-|6) -- (last-|6);
-		\draw (2-|7) -- (last-|7);
-		\draw (1-|8) -- (last-|8);
-		\draw (2-|9) -- (last-|9);
-		\draw (1-|10) -- (last-|10);
-		\draw (2-|11) -- (last-|11);
-		\draw (1-|12) -- (last-|12);
-		\draw (2-|13) -- (last-|13);
-		\draw (1-|14) -- (last-|14);
+			% horizontal
+			\draw (1-|2) -- (1-|last);
+			\draw (2-|1) -- (2-|last);
+			\draw (4-|1) -- (4-|last);
+			\draw (7-|1) -- (7-|last);
+			\draw (10-|1) -- (10-|last);
+			% vertical
+			\draw (2-|1) -- (last-|1);
+			\draw (1-|2) -- (last-|2);
+			\draw (2-|3) -- (last-|3);
+			\draw (1-|4) -- (last-|4);
+			\draw (2-|5) -- (last-|5);
+			\draw (1-|6) -- (last-|6);
+			\draw (2-|7) -- (last-|7);
+			\draw (1-|8) -- (last-|8);
+			\draw (2-|9) -- (last-|9);
+			\draw (1-|10) -- (last-|10);
+			\draw (2-|11) -- (last-|11);
+			\draw (1-|12) -- (last-|12);
+			\draw (2-|13) -- (last-|13);
+			\draw (1-|14) -- (last-|14);
 		\end{tikzpicture}
 	\end{NiceTabular}
 	\end{adjustbox}
@@ -593,27 +593,27 @@
 		\def\ymin{{-0.1*gauss(\B,\B,\Bs)}};
 		\def\h{0.08*gauss(\B,\B,\Bs)};
 
-		\begin{axis}[
-		every axis plot post/.append style={
-			mark=none,
-			domain={-0.05*(\xmax)}:{1.08*\xmax},
-			samples=\N,
-			smooth
-		},
-		every non boxed x axis/.append style={x axis line style=-},
-		every non boxed y axis/.append style={y axis line style=-},
-		xmin={-0.1*(\xmax)},
-		xmax=\xmax, ymin=\ymin,
-		ymax={1.1*gauss(\B,\B,\Bs)},
-		axis lines=middle,
-		y axis line style={draw opacity=0},
-		enlargelimits=upper,
-		ticks=none,
-		width=1.67\linewidth,
-		height=0.5*\linewidth,
-		y=800pt,
-		clip=false,
-		at={(-130.68,-160)}
+		\begin{axis}[%
+			every axis plot post/.append style={%
+				mark=none,
+				domain={-0.05*(\xmax)}:{1.08*\xmax},
+				samples=\N,
+				smooth
+			},
+			every non boxed x axis/.append style={x axis line style=-},
+			every non boxed y axis/.append style={y axis line style=-},
+			xmin={-0.1*(\xmax)},
+			xmax=\xmax, ymin=\ymin,
+			ymax={1.1*gauss(\B,\B,\Bs)},
+			axis lines=middle,
+			y axis line style={draw opacity=0},
+			enlargelimits=upper,
+			ticks=none,
+			width=1.67\linewidth,
+			height=0.5*\linewidth,
+			y=800pt,
+			clip=false,
+			at={(-130.68,-160)}
 		]
 		% PLOTS
 		\addplot[black,thick,name path=B] {gauss(x,\B,\Bs)};
@@ -638,7 +638,7 @@
 		  coordinates {({\B-0.6475*\Bs},{.45*gauss(\B,\B,\Bs)}) ({\B+0.6475*\Bs},{.45*gauss(\B,\B,\Bs)})};
 		\addplot[<->,black]
 		  coordinates {({\B-2.698*\Bs},{.15*gauss(\B,\B,\Bs)}) ({\B+2.698*\Bs},{.15*gauss(\B,\B,\Bs)})};
-	
+
 		\node[black,fill=black!10,inner xsep=3,inner ysep=1, scale=0.8]
 		  at (\B,{.45*gauss(\B,\B,\Bs)}) {50\%};
 		\node[black,fill=black!10,inner xsep=3,inner ysep=2, scale=0.8]
