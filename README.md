@@ -7,6 +7,8 @@
 
 Source code of the Hino algorithm presented during 'The 29th Pacific-Asia Conference on Knowledge Discovery and Data Mining' conference in the Special Session 'DSFA: Learning on Complex Data'.
 
+📘 **[Read the latest version of the slides (PDF)](https://jessycolonval.github.io/Hino/main.pdf)**
+
 
 ## ⚙️ How the Hino algorithm works
 
@@ -30,26 +32,39 @@ And when an isolation score of a point is too high, then this point is considere
 ```bash
 Hino/
 ├── .github/
-│   └── workflows/            # YAML files for GitHub CI/CD Actions
-│       └── python-app.yml    # Runs unit tests after each commit
-├── src/                      # Main project source code
-│   ├── __init__.py           # Makes the folder importable as a module
-│   ├── hino.py               # Hino algorithm
-│   └── quantile.py           # General quantile management
-├── test/                     # Unit tests
+│   └── workflows/                   # YAML files for GitHub CI/CD Actions
+│       ├── latex.yml                # Builds and deploys presentation slides
+│       └── python-app.yml           # Runs unit tests after each commit
+├── slides/                          # LaTeX project for presentation slides
+│   ├── figues
+│       ├── data                     # Csv files of results obtained on synthetic datasets
+│       └── Github_QR.png            # QR code to access this repository
+│   ├── img                          # Logos of the various entities affiliated with this work
+│   ├── Makefile                     # Makefile for local compilation
+│   ├── beamercolorthemefemto.sty    # Femto-st beamer style
+│   ├── beamerfontthemefemto.sty
+│   ├── beamerthemefemto.sty
+│   ├── main.tex                     # LaTeX source of slides
+│   ├── nicematrix-code.dtx          # Nicematrix package
+│   ├── nicematrix.ins
+│   └── nicematrix.sty
+├── src/                             # Main project source code
+│   ├── __init__.py                  # Makes the folder importable as a module
+│   ├── hino.py                      # Hino algorithm
+│   └── quantile.py                  # General quantile management
+├── test/                            # Unit tests
 │   ├── __init__.py
 │   ├── test_hino.py
 │   └── test_quantile.py
-├── .gitignore                # Files/folders ignored by Git
-├── LICENCE                   # The license applied to the project
-├── README.md                 # Project description
-├── example.py                # Python script illustrating the use of the project
-└── requirements.txt          # Project dependencies
+├── .gitignore                       # Files/folders ignored by Git
+├── LICENCE                          # The license applied to the project
+├── README.md                        # Project description
+├── example.py                       # Python script illustrating the use of the project
+└── requirements.txt                 # Project dependencies
 ```
 
 
 ## 📄 Licence
 
 This project is licensed under [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0).
-You are free to use, modify and distribute this software, provided you comply with the terms of the license. 
-See the [LICENSE](./LICENSE) file for the full license text.
+You are free to use, modify and distribute this software, provided you comply with the terms of the license (see the [LICENSE](./LICENSE) file for the full license text).
