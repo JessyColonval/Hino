@@ -31,7 +31,7 @@ And when an isolation score of a point is too high, then this point is considere
 
 The article compares Hino with other state-of-the-art methods on, amongst other things, real datasets to evaluate the quality of detected outliers.
 As the actual execution time is not discussed in the article, here's an example of how long Hino actually takes compared to IQR.
-These methods were run in the same environment with a common Ryzen 5 3600 processor.
+These methods were run in the same environment with a common processor: Ryzen 5 3600.
 
 | Datasets              | Hino time      | IQR time     |
 | --------------------- | -------------- | ------------ |
