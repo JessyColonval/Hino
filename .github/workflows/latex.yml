@@ -21,7 +21,7 @@ jobs:
     - name: Install LaTeX
       run: |
         sudo apt-get update
-        sudo apt-get install -y texlive-latex-recommended texlive-latex-extra texlive-nicematrix
+        sudo apt-get install -y texlive-latex-recommended texlive-latex-extra
 
     - name: Compile LaTeX document
       working-directory: ./slides
