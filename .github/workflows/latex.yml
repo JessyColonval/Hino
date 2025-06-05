@@ -24,10 +24,11 @@ jobs:
         sudo apt-get install -y texlive-latex-recommended texlive-latex-extra
 
     - name: Compile LaTeX document
+      working-directory: ./slides
       run: |
-        pdflatex -interaction=nonstopmode -halt-on-error --shell-escape /slides/main.tex
-        pdflatex -interaction=nonstopmode -halt-on-error --shell-escape /slides/main.tex
-        pdflatex -interaction=nonstopmode -halt-on-error --shell-escape /slides/main.tex
+        pdflatex -interaction=nonstopmode -halt-on-error --shell-escape main.tex
+        pdflatex -interaction=nonstopmode -halt-on-error --shell-escape main.tex
+        pdflatex -interaction=nonstopmode -halt-on-error --shell-escape main.tex
 
     - name: Upload PDF as artifact
       uses: actions/upload-artifact@v4
