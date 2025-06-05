@@ -7,7 +7,7 @@
 
 Source code of the Hino algorithm presented during 'The 29th Pacific-Asia Conference on Knowledge Discovery and Data Mining' conference in the Special Session 'DSFA: Learning on Complex Data'.
 
-📘 **[Read the latest version of the slides (PDF)](https://jessycolonval.github.io/Hino/main.pdf)**
+🎤 **[Read the latest version of the slides (PDF)](https://jessycolonval.github.io/Hino/main.pdf)**
 
 
 ## ⚙️ How the Hino algorithm works
