@@ -43,18 +43,18 @@
 % - the ability to hide or show content for slides 
 \tikzset{%
 	arrowstyle/.style n args=3{%
-	single arrow,
-	fill=femtogreenstrong,
-	anchor=base,
-	align=center,
-	minimum height=#1,
-	single arrow head extend=#2,
-	inner sep=#3
+		single arrow,
+		fill=femtogreenstrong,
+		anchor=base,
+		align=center,
+		minimum height=#1,
+		single arrow head extend=#2,
+		inner sep=#3
 	},
 	invisible/.style={opacity=0},
 	visible on/.style={alt={#1{}{invisible}}},
 	alt/.code args={<#1>#2#3}{%
-	\alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
+	\alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}
 	}
 }
 \newcommand{\tikzarrow}[3]{%

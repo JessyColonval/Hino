@@ -1,9 +1,8 @@
 % Couleurs de base issues de la nouvelle charte graphique (2021)
 
-
-\DeclareOption{green}{
-	\newcommand{\@femtomaincolor}{femtogreenstrong}
-	\newcommand{\@femtolightcolor}{femtogreenlight}
+\DeclareOption{green}{%
+	\newcommand{\femtomaincolor}{femtogreenstrong}
+	\newcommand{\femtolightcolor}{femtogreenlight}
 }
 
 %% Currently not recommended
@@ -33,10 +32,10 @@
 
 \setbeamercolor{title page}{fg=white}
 \setbeamercolor{frametitle}{fg=black}
-\setbeamercolor{top separation line foot}{
-	use=\@femtomaincolor, bg=\@femtomaincolor
+\setbeamercolor{top separation line foot}{%
+	use=\femtomaincolor, bg=\femtomaincolor%
 }
-\setbeamercolor{structure}{fg=\@femtomaincolor}
+\setbeamercolor{structure}{fg=\femtomaincolor}
 
 \setbeamercolor{block title alerted}{fg=femtoredstrong}
 \setbeamercolor{block title example}{fg=femtoyellowstrong}
