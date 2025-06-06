@@ -10,6 +10,7 @@
 \usepackage{nicematrix}
 \usepackage{url}
 \usepackage{amsmath, amssymb}
+\usepackage{centernot}
 
 %
 % Enables marks.
@@ -90,10 +91,10 @@
 	This is a point that is inconsistent with the rest of the dataset.
 	\vspace{0.25cm}
 
-	Inconsistence have two effects on ML:
+	\textbf{Inconsistence have two effects on ML, in:}
 	\begin{itemize}
-		\item In learning phase: Weaken the predictive power.
-		\item In validation phase: Weaken the cross-validation score.
+		\item Learning phase: Weaken the predictive power.
+		\item Validation phase: Weaken the cross-validation score.
 	\end{itemize}
 	\vspace{0.25cm}
 
@@ -196,18 +197,18 @@
 
 	\textbf{Isolation tolerance:}
 	\begin{itemize}
-		\item Being isolated doesn't necessarily mean being an outlier;
+		\item Being isolated $1$ time $\mathbf{\centernot\implies}$ being an outlier;
 		\item A point can be isolated in several attributes.
 	\end{itemize}
-	\tikzarrow{0.75cm}{0.15cm}{0.1cm}Establish an isolation tolerance before a point is considered an outlier.
+	\tikzarrow{0.75cm}{0.15cm}{0.1cm}Establish a limit before a point is an outlier.
 	\vspace{0.25cm}
 
 	\textbf{How it works:}
 	\begin{itemize}
 		\item Splits points into several quantiles for each attribute;
-		\item \textbf{Isolation score of a point}: number of times is in a quantile where its class isn't present in the $2$ adjacent ones;
+		\item \textbf{Isolation score of a point}: number of times where its class isn't present in the $2$ adjacent quantiles;
 		\item \textbf{Outlier}: isolation score $\geq$ tolerance limit;
-		\item Restarts with tolerance limit $+1$ if: \% outlier detected $>$ the \% allowed.
+		\item \textbf{Restarts with tolerance limit} $\mathbf{+1}$ if \% outlier detected $>$ the \% allowed.
 	\end{itemize}
 \end{frame}
 
@@ -253,9 +254,9 @@
 	\textbf{How they created:}
 	\begin{itemize}
 	\item Generate with the algorithm used to create Madelon (from UCI) [8].
-	\item Modify $5$\% of points and make them outliers:
+	\item Modify $5\%$ of points and make them outliers:
 	\begin{itemize}
-		\item Preserve representativity of dataset.
+		\item Preserve representativity of the dataset.
 		\item Choose points with unanimity predicted by ML.
 		\item Change randomly their classes.
 	\end{itemize}
