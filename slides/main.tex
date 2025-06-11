@@ -191,9 +191,9 @@
 	\end{minipage}
 \end{frame}
 
-\begin{frame}{Hino's algorithm}
-	Is an extension of the \textbf{IQR} method.
-	\vspace{0.25cm}
+\begin{frame}{Hino's algorithm (an extension of \textbf{IQR})}
+	%Is an extension of the \textbf{IQR} method.
+	%\vspace{0.25cm}
 
 	\textbf{Isolation tolerance:}
 	\begin{itemize}
@@ -208,11 +208,15 @@
 		\item Splits points into several quantiles for each attribute;
 		\item \textbf{Isolation score of a point}: number of times where its class isn't present in the $2$ adjacent quantiles;
 		\item \textbf{Outlier}: isolation score $\geq$ tolerance limit;
-		\item \textbf{Restarts with tolerance limit} $\mathbf{+1}$ if \% outlier detected $>$ the \% allowed.
+		\item \textbf{Restarts with tolerance limit} $\mathbf{+1}$ if:
+			\begin{itemize}
+				\item \% outlier detected $>$ the \% allowed.
+				\item a class is removed.
+			\end{itemize}
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Objectives of experiments}
+\begin{frame}{Experimentation objectives}
 	\textbf{Determine if Hino is:}
 	\begin{itemize}
 	\item A \textcolor{ForestGreen}{\textbf{viable}} method:
@@ -221,7 +225,7 @@
 		\item Don't removes too much healthy points.
 		\item Doesn't eliminate a class.
 	\end{itemize}
-	\item \textcolor{ForestGreen}{\textbf{Better}} than the state-of-the-art methods:\\ IQR [15], SVM [2], Isolation Forest [12] and LOF [4].
+	\item \textcolor{ForestGreen}{\textbf{Better}} than the state-of-the-art methods:\\ IQR [11], SVM [2], Isolation Forest [7] and LOF [4].
 	\end{itemize}
 	\vspace{0.25cm}
 
@@ -253,10 +257,10 @@
 \begin{frame}{Synthetic datasets}
 	\textbf{How they created:}
 	\begin{itemize}
-	\item Generate with the algorithm used to create Madelon (from UCI) [8].
+	\item Generate with the algorithm used to create Madelon (from UCI) [6].
 	\item Modify $5\%$ of points and make them outliers:
 	\begin{itemize}
-		\item Preserve representativity of the dataset.
+		\item Preserve class representativity.
 		\item Choose points with unanimity predicted by ML.
 		\item Change randomly their classes.
 	\end{itemize}
@@ -289,7 +293,7 @@
 	\end{minipage}
 \end{frame}
 
-\begin{frame}{Synthetic Results}
+\begin{frame}{Results on synthetic datasets}
 	\begin{adjustbox}{max height=0.8\textheight, center}
 	\begin{tikzpicture}
 		\pgfplotsset{every tick label/.append style={font=\Large}}
@@ -495,7 +499,7 @@
 	\begin{itemize}
 	\item A \textcolor{ForestGreen}{\textbf{viable}} approach.
 	\item A \textcolor{ForestGreen}{\textbf{better}} approach than the state-of-arts ones.
-	\item Takes more time than IQR: $O(n_{p}(n_{a}n_{c}+n_{a}+1))$ vs $O(n_{p}*2n_{a})$\\
+	\item \textcolor{BrickRed}{\textbf{Takes more time than IQR}}: $O(n_{p}(n_{a}n_{c}+n_{a}+1))$ vs $O(n_{p}*2n_{a})$\\
 	{\scriptsize where $n_{p}$ as number of points, $n_{a}$ as number of attributes and $n_{c}$ as number of classes.}\\
 	%But linear complexity according to $n_{p}$.
 	\end{itemize}
@@ -510,7 +514,7 @@
 
 	Use \textbf{Hino} as an incremental approach:
 	\begin{itemize}
-	\item Use a train \textbf{Hino} model to detect outliers.
+	\item Use a trained \textbf{Hino} model to detect outliers.
 	\item Compare with other incremental methods.
 	\end{itemize}
 \end{frame}
@@ -528,7 +532,25 @@
 	\end{figure}
 \end{frame}
 
-\begin{frame}{IQR algorithm}
+\begin{frame}{Bibliography}
+	\scriptsize
+	\textbf{[2]} Amer, M., Goldstein, M., Abdennadher, S.: Enhancing one-class support vector machines for unsupervised anomaly detection. In: Proceedings of the ACM SIGKDD Workshop on Outlier Detection and Description. pp. 8–15. ODD’13, Association for Computing Machinery, New York, NY, USA (Aug 2013). \url{https://doi.org/10.1145/2500853.2500857}
+	\vspace{0.25cm}
+
+	\textbf{[4]} Breunig, M., Kriegel, H.P., Ng, R., Sander, J.: LOF: Identifying Density-Based Local Outliers. vol. 29, pp. 93–104 (Jun 2000). \url{https://doi.org/10.1145/342009.335388}
+	\vspace{0.25cm}
+
+	\textbf{[6]} Guyon, I.: Design of experiments for the NIPS 2003 variable selection benchmark. In: undefined (2003). \url{https://doi.org/10.1007/978-3-540-35488-8_10}
+	%,\url{https://www.semanticscholar.org/paper/Design-of-experiments-for-the-NIPS-2003-variable-Guyon/b979fa88ca448fb08633f961131f45214b1cf109}
+	\vspace{0.25cm}
+
+	\textbf{[7]} Liu, F.T., Ting, K.M., Zhou, Z.H.: Isolation-Based Anomaly Detection. ACM Transactions on Knowledge Discovery from Data 6(1), 3:1–3:39 (Mar 2012). \url{https://doi.org/10.1145/2133360.2133363}
+	\vspace{0.25cm}
+
+	\textbf{[11]} Vinutha, H.P., Poornima, B., Sagar, B.M.: Detection of Outliers Using Interquartile Range Technique from Intrusion Dataset. In: Satapathy, S.C., Tavares, J.M.R., Bhateja, V., Mohanty, J.R. (eds.) Information and Decision Sciences. pp. 511–518. Springer, Singapore (2018). \url{https://doi.org/10.1007/978-981-10-7563-6_53}
+\end{frame}
+
+\begin{frame}{Bonus: IQR algorithm}
 	\begin{minipage}[c]{0.6\linewidth}
 	\begin{tikzpicture}[scale=0.65, font=\small]
 		\draw (-6,1.5) -- (6,1.5);
