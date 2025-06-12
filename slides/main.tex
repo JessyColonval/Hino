@@ -192,16 +192,13 @@
 	\end{minipage}
 \end{frame}
 
-\begin{frame}{Hino's algorithm (an extension of \textbf{IQR})}
-	%Is an extension of the \textbf{IQR} method.
-	%\vspace{0.25cm}
-
+\begin{frame}{Hino's algorithm (based on \textbf{IQR})}
 	\textbf{Isolation tolerance:}
 	\begin{itemize}
 		\item Being isolated $1$ time $\mathbf{\centernot\implies}$ being an outlier;
 		\item A point can be isolated in several attributes.
 	\end{itemize}
-	\tikzarrow{0.75cm}{0.15cm}{0.1cm}Establish a limit before a point is an outlier.
+	\tikzarrow{0.75cm}{0.15cm}{0.1cm}Set a limit: $\mathbf{\lfloor ( 0.0205 * log_{2}(-1.623730 + n_{c}) + 0.062579 ) * n_{a} \rceil}$
 	\vspace{0.25cm}
 
 	\textbf{How it works:}
@@ -221,11 +218,11 @@
 	\textbf{Determine if Hino is:}
 	\begin{itemize}
 	\item A \textcolor{ForestGreen}{\textbf{viable}} method:
-	\begin{itemize}
-		\item Removes a maximum of outliers.
-		\item Don't removes too much healthy points.
-		\item Doesn't eliminate a class.
-	\end{itemize}
+		\begin{itemize}
+			\item Removes a maximum of outliers.
+			\item Don't removes too much healthy points.
+			\item Doesn't eliminate a class.
+		\end{itemize}
 	\item \textcolor{ForestGreen}{\textbf{Better}} than the state-of-the-art methods:\\ IQR [11], SVM [2], Isolation Forest [7] and LOF [4].
 	\end{itemize}
 	\vspace{0.25cm}
