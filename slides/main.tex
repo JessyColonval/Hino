@@ -87,8 +87,11 @@
 	\titlepage
 \end{frame}
 
-\begin{frame}{What is an outlier?}
-	This is a point that is inconsistent with the rest of the dataset.
+\begin{frame}{Motivation}
+	\textbf{What is an outlier?}
+	\begin{itemize}
+		\item This is a point that is inconsistent with the rest of the dataset.
+	\end{itemize}
 	\vspace{0.25cm}
 
 	\textbf{Inconsistence have two effects on ML, in:}
@@ -96,9 +99,7 @@
 		\item Learning phase: Weaken the predictive power.
 		\item Validation phase: Weaken the cross-validation score.
 	\end{itemize}
-	\vspace{0.25cm}
-
-	They must therefore be removed from corpus
+	\tikzarrow{0.75cm}{0.15cm}{0.1cm}They must be removed from these corpus.
 	\vspace{0.5cm}
 
 	\textbf{Research questions:}
@@ -106,7 +107,7 @@
 		\item How do you characterize an outlier?
 		\item It's possible to have an automatic method?
 	\end{enumerate}
-	\tikzarrow{0.75cm}{0.15cm}{0.1cm}Validation on real and synthetic datasets
+	\tikzarrow{0.75cm}{0.15cm}{0.1cm}Validation on real and synthetic datasets.
 \end{frame}
 
 \begin{frame}{How we define outliers}
