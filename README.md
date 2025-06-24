@@ -90,6 +90,31 @@ Hino/
 ```
 
 
+## 📚 How to Cite
+
+If you use this project in your research or publication, please cite it as follows:
+
+> Colonval, J., Bouquet, F. (2025). Hunting Inside N-Quantiles of Outliers (Hino). In: Wu, X., et al. Data Science: Foundations and Applications. PAKDD 2025. Lecture Notes in Computer Science(), vol 15875. Springer, Singapore. https://doi.org/10.1007/978-981-96-8295-9_31
+
+Whose BibTex is:
+```bibtex
+@InProceedings{10.1007/978-981-96-8295-9_31,
+  author="Colonval, Jessy and Bouquet, Fabrice",
+  editor="Wu, Xintao and Spiliopoulou, Myra
+    and Wang, Can and Kumar, Vipin
+    and Cao, Longbing and Zhou, Xiangmin
+    and Pang, Guansong and Gama, Joao",
+  title="Hunting Inside N-Quantiles of Outliers (Hino)",
+  booktitle="Data Science: Foundations and Applications",
+  year="2025",
+  publisher="Springer Nature Singapore",
+  address="Singapore",
+  pages="420--431",
+  isbn="978-981-96-8295-9"
+}
+```
+
+
 ## 📄 Licence
 
 This project is licensed under [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0).
