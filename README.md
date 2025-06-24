@@ -99,18 +99,18 @@ If you use this project in your research or publication, please cite it as follo
 Whose BibTex is:
 ```bibtex
 @InProceedings{10.1007/978-981-96-8295-9_31,
-  author="Colonval, Jessy and Bouquet, Fabrice",
-  editor="Wu, Xintao and Spiliopoulou, Myra
-    and Wang, Can and Kumar, Vipin
-    and Cao, Longbing and Zhou, Xiangmin
-    and Pang, Guansong and Gama, Joao",
-  title="Hunting Inside N-Quantiles of Outliers (Hino)",
-  booktitle="Data Science: Foundations and Applications",
-  year="2025",
-  publisher="Springer Nature Singapore",
-  address="Singapore",
-  pages="420--431",
-  isbn="978-981-96-8295-9"
+    author="Colonval, Jessy and Bouquet, Fabrice",
+    editor="Wu, Xintao and Spiliopoulou, Myra
+        and Wang, Can and Kumar, Vipin
+        and Cao, Longbing and Zhou, Xiangmin
+        and Pang, Guansong and Gama, Joao",
+    title="Hunting Inside N-Quantiles of Outliers (Hino)",
+    booktitle="Data Science: Foundations and Applications",
+    year="2025",
+    publisher="Springer Nature Singapore",
+    address="Singapore",
+    pages="420--431",
+    isbn="978-981-96-8295-9"
 }
 ```
 
